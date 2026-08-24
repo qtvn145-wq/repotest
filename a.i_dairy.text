@@ -1,0 +1,45 @@
+bạn là dev python. hãy viết 1 chương trình quản lý sinh viên 
+có chức năng : thêm,xoá,tìm.
+tạo ra 1 file để chứa dữ liệu học sinh và 1 file 
+để hiện ra giao diện thao tác đầy đủ chức năng,
+1 file tạo ra giao diện người dùng chỉ có chức năng tìm kiếm 
+và xem danh sách sinh viên . 
+phải có docstring. output : code +3 test case của 3 chức năng. 
+có giải thích
+
+
+Thought for 50s
+Thought for 50s
+Tôi sẽ tạo 4 file: 1 file dữ liệu/logic lõi, 1 giao diện admin 
+đầy đủ, 1 giao diện người dùng chỉ tìm kiếm/xem, và 1 file test.
+
+
+Created 4 files, ran 3 commands, read a file · 2 notes
+Created 4 files, ran 3 commands, read a file · 2 notes
+Giải thích cấu trúc chương trình
+1. quan_ly_sinh_vien.py — tầng dữ liệu/logic lõi
+
+Class SinhVien: đại diện 1 bản ghi sinh viên 
+(mã, tên, lớp, điểm TB), có to_dict()/from_dict() để chuyển đổi qua lại với JSON.
+Class QuanLySinhVien: đọc/ghi dữ liệu vào
+file data_sinh_vien.json, và có 4 hàm nghiệp vụ chính:
+    them_sinh_vien() — thêm, chặn trùng mã SV
+    xoa_sinh_vien() — xoá theo mã SV
+    tim_kiem() — tìm gần đúng theo mã hoặc tên, không phân biệt hoa/thường
+    lay_tat_ca() — lấy toàn bộ danh sách
+File này được cả 2 giao diện dùng chung, tránh lặp code 
+và đảm bảo dữ liệu nhất quán.
+2. giao_dien_quan_tri.py — menu CLI đầy đủ 4 chức năng: 
+thêm, xoá, tìm, xem (dành cho admin).
+
+3. giao_dien_tra_cuu.py — menu CLI giới hạn chỉ 2 chức năng:
+tìm kiếm và xem danh sách (dành cho người dùng thường, không có quyền sửa dữ liệu).
+
+4. test_quan_ly_sinh_vien.py — 3 test case dùng unittest, 
+mỗi test dùng file JSON tạm riêng (setUp/tearDown) 
+để không đụng dữ liệu thật:
+
+test_them_sinh_vien: thêm thành công + thêm trùng mã phải thất bại
+test_xoa_sinh_vien: xoá tồn tại thành công + xoá mã không có phải thất bại
+test_tim_kiem: tìm theo mã, theo tên gần đúng, và trường hợp không tìm thấy
+Đã chạy thử — cả 3 test đều PASS (Ran 3 tests ... OK).
